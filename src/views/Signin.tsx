@@ -18,7 +18,7 @@ const Auth = () => {
 
   const authInfo = useSelector((state) => state.auth.info);
 
-  if (authInfo.token) {
+  if (authInfo.token && authInfo.token !== '') {
     return <Navigate to="/" />;
   }
 
@@ -35,8 +35,7 @@ const Auth = () => {
       });
       if (data && status === 200) {
         const token = data.access_token;
-        const account = { email };
-        setAccount(account);
+        setAccount({ email });
         setToken(token);
         dispatch(setAuth({ token, account }));
         console.log({token, account})
@@ -52,7 +51,7 @@ const Auth = () => {
   return (
     <div
       className={
-        "w-full h-full sm:h-auto sm:w-2/5 max-w-sm bg-white shadow-md flex flex-col text-base rounded-md overflow-hidden"
+        "w-full h-auto sm:w-2/5 max-w-sm bg-white shadow-md flex flex-col text-base rounded-md overflow-hidden"
       }
     >
       <h1 className="p-5 bg-teal-700 text-white text-3xl font-serif">

@@ -7,7 +7,7 @@ const useLocalStorage = (keyName:string, defaultValue:string) => {
       if (value) {
         return typeof value === 'string' ? value : JSON.parse(value);
       } else {
-        window.localStorage.setItem(keyName, typeof value === 'string'? defaultValue : JSON.stringify(defaultValue));
+        window.localStorage.setItem(keyName, defaultValue);
         return defaultValue;
       }
     } catch (err) {
@@ -16,7 +16,7 @@ const useLocalStorage = (keyName:string, defaultValue:string) => {
   });
   const setValue = (newValue: string) => {
     try {
-      window.localStorage.setItem(keyName, typeof newValue === 'string' ? newValue : JSON.stringify(newValue));
+      window.localStorage.setItem(keyName, newValue);
     } catch (err) {}
     setStoredValue(newValue);
   };

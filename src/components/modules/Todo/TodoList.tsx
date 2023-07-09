@@ -30,14 +30,14 @@ const TodoList = () => {
       dispatch(fetchTodos());
     }
     if(todosStatus === REQUEST_STATUS.FAIL && todosError.indexOf('401')) {
-      console.log('todo request status', REQUEST_STATUS.FAIL)
       dispatch(removeAuth())
+      console.log('todo request status', REQUEST_STATUS.FAIL)
     }
     return () => {};
   }, [todosStatus, dispatch]);
 
   return (
-    <ul className="tasks-list">
+    <ul className="tasks-list overflow-y-auto">
       {todos.map((todo:todoProps) => (
         <TodoItem
           id={todo.id}
