@@ -6,11 +6,12 @@ export const authSlice = createSlice({
   initialState: {
     info: {
         token: localStorage.getItem(VITE_KEY_TOKEN),
-        account: localStorage.getItem(VITE_KEY_TOKEN)
+        account: localStorage.getItem(VITE_KEY_PROFILE)
     }
   },
   reducers: {
     setAuth: (state, action: {payload: {token: string, account: string}}) => {
+      console.log('setAuth', action.payload)
       state.info = {...action.payload}
     },
     removeAuth: (state) => {

@@ -1,4 +1,4 @@
-import { MutableRefObject, forwardRef } from "react";
+import { forwardRef } from "react";
 
 type TextInputProps = {
   label?: string;

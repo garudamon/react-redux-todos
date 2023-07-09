@@ -10,6 +10,7 @@ import {
 } from "../../../store/todosSlice";
 import { useEffect } from "react";
 import { removeAuth } from "../../../store/authSlice";
+import { REQUEST_STATUS } from "../../../utils/constants";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -25,11 +26,11 @@ const TodoList = () => {
   }
 
   useEffect(() => {
-    if (todosStatus === "iddle") {
+    if (todosStatus === REQUEST_STATUS.IDDLE) {
       dispatch(fetchTodos());
     }
-    if(todosStatus === 'failed' && todosError.indexOf('401')) {
-      console.log('lhooo')
+    if(todosStatus === REQUEST_STATUS.FAIL && todosError.indexOf('401')) {
+      console.log('todo request status', REQUEST_STATUS.FAIL)
       dispatch(removeAuth())
     }
     return () => {};

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../utils/api";
 import uuid from "../utils/uuid";
+import {REQUEST_STATUS} from '../utils/constants'
 
 export type todoProps = {
   id: string;
@@ -54,8 +55,8 @@ export const updateTodo = createAsyncThunk(
 const initialState = {
   items: [],
   selected: {},
-  status: "iddle",
-  addStatus: "iddle",
+  status: REQUEST_STATUS.IDDLE,
+  addStatus: REQUEST_STATUS.IDDLE,
   error: null,
 };
 
@@ -70,36 +71,36 @@ export const todosSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, (state) => {
-        state.status = "loading";
+        state.status = REQUEST_STATUS.LOADING;
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = REQUEST_STATUS.OK;
         state.items = action.payload;
       })
       .addCase(fetchTodos.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = REQUEST_STATUS.FAIL;
         state.error = action.error.message;
       });
 
     builder
       .addCase(addTodos.pending, (state) => {
-        state.addStatus = "loading";
+        state.addStatus = REQUEST_STATUS.LOADING;
       })
       .addCase(addTodos.fulfilled, (state, action) => {
-        state.addStatus = "succeeded";
+        state.addStatus = REQUEST_STATUS.OK;
         state.items = [...state.items, action.payload];
       })
       .addCase(addTodos.rejected, (state, action) => {
-        state.addStatus = "failed";
+        state.addStatus = REQUEST_STATUS.FAIL;
         state.error = action.error.message;
       });
 
     builder
       .addCase(updateTodo.pending, (state) => {
-        state.addStatus = "loading";
+        state.addStatus = REQUEST_STATUS.LOADING;
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
-        state.addStatus = "succeeded";
+        state.addStatus = REQUEST_STATUS.OK;
         state.items = [
           ...state.items.map((v) =>
             v.id === action.payload.id ? { ...action.payload } : v
@@ -108,13 +109,13 @@ export const todosSlice = createSlice({
         state.selected = {};
       })
       .addCase(updateTodo.rejected, (state, action) => {
-        state.addStatus = "failed";
+        state.addStatus = REQUEST_STATUS.FAIL;
         state.error = action.error.message;
       });
 
     builder
       .addCase(deleteTodos.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = REQUEST_STATUS.OK;
         state.items = state.items.filter(
           (val: todoProps) => val.id !== action.payload?.uuid
         );

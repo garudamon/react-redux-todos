@@ -6,7 +6,9 @@ import {
   getTodosSelected,
   updateTodo,
 } from "../../../store/todosSlice";
-import TextInput from "../../control/TextInput";
+import TextInput from "../../control/TextInputControl";
+import ButtonControl from "../../control/ButtonControl";
+import { REQUEST_STATUS } from "../../../utils/constants";
 
 type TaskFormProps = {
   title: string | null;
@@ -64,7 +66,7 @@ const AddTodo = () => {
     validate();
 
     if (errors.title === null) {
-      if (addStatus == "loading") return;
+      if (addStatus == REQUEST_STATUS.LOADING) return;
 
       if (selectedTodos && selectedTodos.id) {
         dispatch(updateTodo({ ...selectedTodos, title: title().get() }));
@@ -77,9 +79,9 @@ const AddTodo = () => {
 
   const getSubmitText = () => {
     if (selectedTodos && selectedTodos.id) {
-      return addStatus == "loading" ? "Updating" : "Update";
+      return addStatus == REQUEST_STATUS.LOADING ? "Updating" : "Update";
     } else {
-      return addStatus == "loading" ? "Adding" : "Add";
+      return addStatus == REQUEST_STATUS.LOADING ? "Adding" : "Add";
     }
   };
 
@@ -92,12 +94,12 @@ const AddTodo = () => {
         <TextInput error={errors.title} ref={refInputTitle} />
       </div>
 
-      <button
+      <ButtonControl
         type="submit"
         className="px-3 py-2 rounded hover:bg-teal-500 text-white bg-teal-700"
       >
         {getSubmitText()}
-      </button>
+      </ButtonControl>
     </form>
   );
 };

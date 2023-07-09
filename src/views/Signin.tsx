@@ -1,11 +1,12 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Navigate } from "react-router-dom";
 import api from "../utils/api";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { VITE_KEY_PROFILE, VITE_KEY_TOKEN } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "../store/authSlice";
-import TextInput from "../components/control/TextInput";
+import TextInput from "../components/control/TextInputControl";
+import ButtonControl from "../components/control/ButtonControl";
 
 const Auth = () => {
   const [helperText, setHelperText] = useState({ error: null, text: null });
@@ -38,6 +39,7 @@ const Auth = () => {
         setAccount(account);
         setToken(token);
         dispatch(setAuth({ token, account }));
+        console.log({token, account})
         return <Navigate to="/" />;
       } else {
         setHelperText({ error: true, text: data.message });
@@ -50,7 +52,7 @@ const Auth = () => {
   return (
     <div
       className={
-        "w-full h-full sm:h-auto sm:w-2/5 max-w-sm bg-white shadow flex flex-col text-base rounded-md overflow-hidden"
+        "w-full h-full sm:h-auto sm:w-2/5 max-w-sm bg-white shadow-md flex flex-col text-base rounded-md overflow-hidden"
       }
     >
       <h1 className="p-5 bg-teal-700 text-white text-3xl font-serif">
@@ -59,7 +61,7 @@ const Auth = () => {
 
       <div className="px-5 py-3 flex flex-col gap-3">
         <TextInput ref={emailRef} label="Email" />
-        <TextInput ref={passwordRef} label="Password" />
+        <TextInput ref={passwordRef} label="Password" type="password" />
         {!!helperText.text && (
           <div
             className={`border px-1 py-2 my-2 text-center text-sm ${
@@ -72,13 +74,13 @@ const Auth = () => {
           </div>
         )}
 
-        <button
+        <ButtonControl
           onClick={() => handleLogin()}
           type="button"
           className="mt-3 px-3 py-2 rounded hover:bg-teal-500 text-white bg-teal-700 w-full"
         >
           Sign In
-        </button>
+        </ButtonControl>
       </div>
     </div>
   );
