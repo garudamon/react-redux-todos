@@ -24,7 +24,7 @@ const TextInput = forwardRef((props: TextInputProps, ref) => {
           error ? "!border-red-500" : ""
         }`}
         ref={ref}
-        placeholder={`Type ${label ? label : ""} here...`}
+        placeholder={`Type ${label ? label.toLowerCase() : ""} here...`}
         {...rest}
       />
     </div>
