@@ -6,7 +6,7 @@ import RouterProvider from "./providers/route";
 
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={store()}>
       <RouterProvider />
     </Provider>
   );

@@ -12,7 +12,7 @@ const ButtonControl = (props: ButtonControlType) => {
   return (
     <button
       className="px-3 py-2 rounded hover:bg-teal-600 text-white bg-teal-700"
-      onClick={(e) => props?.onClick(e)}
+      onClick={(e) => props?.onClick ? props?.onClick(e) : {}}
       {...rest}
     >
       {children}

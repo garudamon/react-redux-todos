@@ -1,10 +1,27 @@
-import { configureStore } from "@reduxjs/toolkit";
-import taskReducer from "./todosSlice";
-import authSlice from "./authSlice";
+import {
+  PreloadedState,
+  combineReducers,
+  configureStore,
+} from "@reduxjs/toolkit";
+import todosReducer from "./todosSlice";
+import authReducer from "./authSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-export default configureStore({
-  reducer: {
-    todos: taskReducer,
-    auth: authSlice
-  },
+const rootReducer = combineReducers({
+  todos: todosReducer,
+  auth: authReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export default function setupStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}

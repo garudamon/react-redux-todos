@@ -58,7 +58,7 @@ const Auth = () => {
         Sign-in
       </h1>
 
-      <div className="px-5 py-3 flex flex-col gap-3">
+      <form className="px-5 py-3 flex flex-col gap-3" onSubmit={() => handleLogin()}>
         <TextInput ref={emailRef} label="Email" />
         <TextInput ref={passwordRef} label="Password" type="password" />
         {!!helperText.text && (
@@ -74,13 +74,12 @@ const Auth = () => {
         )}
 
         <ButtonControl
-          onClick={() => handleLogin()}
-          type="button"
+          type="submit"
           className="mt-3 px-3 py-2 rounded hover:bg-teal-500 text-white bg-teal-700 w-full"
         >
           Sign In
         </ButtonControl>
-      </div>
+      </form>
     </div>
   );
 };

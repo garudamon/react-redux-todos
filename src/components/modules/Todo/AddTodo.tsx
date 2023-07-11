@@ -87,7 +87,7 @@ const AddTodo = () => {
 
   return (
     <form
-      className="flex gap-3 px-5 py-3 border-b sticky top-0"
+      className="flex gap-3 px-5 py-3 border-b sticky top-0 bg-white z-10"
       onSubmit={(e) => onSubmit(e)}
     >
       <div className="w-full">
