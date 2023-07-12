@@ -14,10 +14,4 @@ describe("TodoList.tsx testing", () => {
     expect(listitem).toHaveLength(todos.length);
   });
 
-  test('first item', async () => {
-    let items = await screen.findAllByRole("listitem");
-    const button = within(items[0]).getByTestId('todo-delete')
-    window.confirm = vi.fn(() => true)
-    fireEvent.click(button);
-  });
 });

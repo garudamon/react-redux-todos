@@ -97,6 +97,7 @@ const AddTodo = () => {
       <ButtonControl
         type="submit"
         className="px-3 py-2 rounded hover:bg-teal-500 text-white bg-teal-700"
+        data-testid="button-add-todos"
       >
         {getSubmitText()}
       </ButtonControl>

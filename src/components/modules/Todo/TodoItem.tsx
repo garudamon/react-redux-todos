@@ -3,12 +3,17 @@ import { Icon } from "@iconify/react";
 const TodoItem = (props) => {
   const { title, onSelect, onDelete, ...rest } = props;
   return (
-    <li className="flex gap-3 justify-between px-5 py-3 border-b border-b-gray-200 hover:bg-gray-100" {...rest}>
-      <div onClick={() => onSelect} data-testid="todo-title">{title}</div>
+    <li
+      className="flex gap-3 justify-between px-5 py-3 border-b border-b-gray-200 hover:bg-gray-100"
+      {...rest}
+    >
+      <div onClick={() => onSelect} data-testid="todo-title">
+        {title}
+      </div>
       <div className="flex gap-3 items-center">
-      <button
+        <button
           type="button"
-          className="remove-task-button opacity-40 hover:opacity-100 text-gray-600"
+          className="update-task-button opacity-40 hover:opacity-100 text-gray-600"
           onClick={(e) => onSelect()}
           data-testid="todo-edit"
         >
