@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { Navigate } from "react-router-dom";
-import api from "../utils/api";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { VITE_KEY_PROFILE, VITE_KEY_TOKEN } from "../utils/constants";
+import api from "utils/api";
+import useLocalStorage from "hooks/useLocalStorage";
+import { VITE_KEY_PROFILE, VITE_KEY_TOKEN } from "utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "../store/authSlice";
-import TextInput from "../components/control/TextInputControl";
-import ButtonControl from "../components/control/ButtonControl";
+import { setAuth } from "store/authSlice";
+import TextInput from "components/control/TextInputControl";
+import ButtonControl from "components/control/ButtonControl";
 
 const Auth = () => {
   const [helperText, setHelperText] = useState({ error: null, text: null });
@@ -22,7 +22,8 @@ const Auth = () => {
     return <Navigate to="/" />;
   }
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     // const email = "nilson@email.com"; //emailRef.current?.value;
     // const password = "nilson"; //passwordRef.current?.value;
     const email = emailRef.current?.value;
@@ -44,6 +45,7 @@ const Auth = () => {
         setHelperText({ error: true, text: data.message });
       }
     } catch (error) {
+      console.log('error', error)
       setHelperText({ error: true, text: error.message });
     }
   };
@@ -58,7 +60,7 @@ const Auth = () => {
         Sign-in
       </h1>
 
-      <form className="px-5 py-3 flex flex-col gap-3" onSubmit={() => handleLogin()}>
+      <form className="px-5 py-3 flex flex-col gap-3" onSubmit={(e) => handleLogin(e)}>
         <TextInput ref={emailRef} label="Email" />
         <TextInput ref={passwordRef} label="Password" type="password" />
         {!!helperText.text && (

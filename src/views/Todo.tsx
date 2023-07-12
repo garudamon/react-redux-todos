@@ -1,6 +1,6 @@
-import Signout from "../components/modules/Auth/Signout";
-import AddTodo from "../components/modules/Todo/AddTodo";
-import TodoList from "../components/modules/Todo/TodoList";
+import Signout from "components/modules/Auth/Signout";
+import AddTodo from "components/modules/Todo/AddTodo";
+import TodoList from "components/modules/Todo/TodoList";
 
 const TodoPage = () => {
   return (

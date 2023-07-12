@@ -24,4 +24,12 @@ export const handlers = [
   rest.get(`${VITE_API_URL}/todos`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(todos));
   }),
+
+  rest.delete(`${VITE_API_URL}/todos/${todos[0].id}`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+
+  rest.patch(`${VITE_API_URL}/todos/${todos[0].id}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ ...todos[0], title: "updating" }));
+  }),
 ];

@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import TodoPage from "../views/Todo";
-import SigninPage from "../views/Signin";
-import ErrorPage from "../views/Error";
-import {ProtectedRoute} from '../views/Protected'
-import CenterLayout from "../layouts/CenterContent";
+import TodoPage from "views/Todo";
+import SigninPage from "views/Signin";
+import ErrorPage from "views/Error";
+import {ProtectedRoute} from 'views/Protected'
+import CenterLayout from "layouts/CenterContent";
 
 const router = createBrowserRouter([
   {

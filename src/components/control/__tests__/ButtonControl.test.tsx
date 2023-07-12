@@ -1,7 +1,7 @@
-import Button from "./ButtonControl";
-import { fireEvent, render, screen } from "../../utils/test-utils";
+import Button from "../ButtonControl";
+import { fireEvent, render, screen } from "utils/test-utils";
 
-describe('Button Control Test', () => {
+describe('ButtonControl.tsx Test', () => {
   test('it should return "Save Data"', () => {
     render(<Button type="button" className="h-1">Save Data</Button>)
     const text = screen.getByText(/Save Data/i);

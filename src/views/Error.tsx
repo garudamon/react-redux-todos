@@ -1,5 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import CenterLayout from "../layouts/CenterContent";
+import CenterLayout from "layouts/CenterContent";
 
 export default function ErrorPage() {
   const error = useRouteError();

@@ -5,10 +5,10 @@ import {
   getTodosAddStatus,
   getTodosSelected,
   updateTodo,
-} from "../../../store/todosSlice";
-import TextInput from "../../control/TextInputControl";
-import ButtonControl from "../../control/ButtonControl";
-import { REQUEST_STATUS } from "../../../utils/constants";
+} from "store/todosSlice";
+import TextInput from "components/control/TextInputControl";
+import ButtonControl from "components/control/ButtonControl";
+import { REQUEST_STATUS } from "utils/constants";
 
 type TaskFormProps = {
   title: string | null;
@@ -91,7 +91,7 @@ const AddTodo = () => {
       onSubmit={(e) => onSubmit(e)}
     >
       <div className="w-full">
-        <TextInput error={errors.title} ref={refInputTitle} />
+        <TextInput error={errors.title} ref={refInputTitle} data-testid="input-add-todos" />
       </div>
 
       <ButtonControl
