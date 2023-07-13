@@ -8,10 +8,11 @@ import {
   getTodosError,
   selectTodo,
   deleteTodos,
-} from "../../../store/todosSlice";
+  updateTodo,
+} from "store/todosSlice";
 import { useEffect } from "react";
-import { removeAuth } from "../../../store/authSlice";
-import { REQUEST_STATUS } from "../../../utils/constants";
+import { removeAuth } from "store/authSlice";
+import { REQUEST_STATUS } from "utils/constants";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const TodoList = () => {
 
   const selectTask = (todo) => {
     dispatch(selectTodo(todo));
+  };
+
+  const toggleComple = (todo) => {
+    dispatch(updateTodo({ ...todo, complete: !todo.complete }));
   };
 
   const deleteTask = (todo) => {
@@ -47,8 +52,10 @@ const TodoList = () => {
         <TodoItem
           id={todo.id}
           title={todo.title}
+          complete={todo.complete}
           key={todo.id}
           onSelect={() => selectTask(todo)}
+          toggleComple={() => toggleComple(todo)}
           onDelete={() => deleteTask(todo)}
           data-testid={`item-${index}`}
         />

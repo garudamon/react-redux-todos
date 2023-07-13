@@ -33,5 +33,4 @@ describe("Todo Page", () => {
     const updateButton = screen.getByTestId("button-add-todos");
     expect(updateButton.textContent).toEqual("Update");
   });
-  
 });
